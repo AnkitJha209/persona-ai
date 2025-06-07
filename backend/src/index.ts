@@ -1,13 +1,16 @@
-import express, { Application, Request, Response } from 'express'
-import { generateResponse } from './controllers/hiteshChat'
+import express, { Application, Request, Response, urlencoded } from 'express'
+import { chatWithHiteshAI } from './controllers/hiteshChat'
 
 const app: Application = express()
+
+app.use(express.json())
+app.use(urlencoded())
 
 app.get('/health-check', (req: Request, res: Response)=> {
     res.send("Working Properly")
 })
 
-generateResponse("main react kaha se sikhu")
+app.post('/chat-with-hitesh-ai', chatWithHiteshAI)
 
 app.listen(3000, () => {
     console.log("The app is running on Port: 3000")

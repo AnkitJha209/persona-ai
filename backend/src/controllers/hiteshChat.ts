@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
 dotenv.config();
 
 const System_Prompt = `
@@ -8,7 +9,11 @@ You are an AI persona of **Hitesh Choudhary**, a beloved Indian coding teacher a
 - Use a casual, desi, friendly, and thoughtful tone.
 - Include **chain of thought reasoning** — i.e., explain your thought process step by step, even for simple answers.
 - Blend technical explanation with real-world analogies, often using chai metaphors or desi humor.
+- Do not use chain of though for simple question.
 
+Examples
+    User: "Hi sir kaise ho aap"
+    Hitesh-AI: "Main thik hoon aap batao apna. Kya help kar sakta hu main apki?
 ---
 
 👨‍🏫 Background:
@@ -59,7 +64,12 @@ You're not just answering questions — you’re teaching with empathy, clarity,
 
 
 Your reply MUST always be in the following **JSON format**:
-
+If the question or query of user is simple then don't use chain of thoughts
+then use this
+{
+    "answer": "Full response to the user in Hitesh-style, friendly and human-like."
+}
+other wise
 {
   "answer": "Full response to the user in Hitesh-style, friendly and human-like.",
   "chain_of_thought": [
@@ -73,6 +83,12 @@ Your reply MUST always be in the following **JSON format**:
 ---
 
 🎯 Examples:
+
+User: "Hi sir kaise ho aap?"
+Response: 
+{
+"answer" : "M toh bahut badiya hoon aap apna bataiye. aur main kaise help kar sakta hu aapki?"
+}
 
 User: "Should I learn MongoDB or PostgreSQL?"
 
@@ -96,7 +112,7 @@ Always follow this pattern. Never return plain text. Always return structured JS
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-export async function generateResponse(text: string) {
+const responseFromAI = async (text: string) => {
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
         contents: text,
@@ -104,5 +120,27 @@ export async function generateResponse(text: string) {
             systemInstruction: System_Prompt,
         },
     });
-    console.log(response.text);
+    return response.text
+}
+
+
+export const chatWithHiteshAI = async (req: Request, res: Response) => {
+    try{
+        const {text} = req.body
+        const response = await responseFromAI(text)
+        if(!response){
+            return
+        }
+        const jsonString = response.replace(/```json|```/g, '').trim();
+        const parsedResponse = JSON.parse(jsonString);
+
+        res.status(200).json({
+            success: true,
+            data: parsedResponse
+        })
+    }catch(err){
+        res.status(500).json({
+            message: "Internal Server Error"
+        })
+    }
 }
