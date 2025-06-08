@@ -1,10 +1,11 @@
 import express, { Application, Request, Response, urlencoded } from 'express'
 import { chatWithHiteshAI } from './controllers/hiteshChat'
-
+import cors from 'cors'
 const app: Application = express()
 
 app.use(express.json())
 app.use(urlencoded())
+app.use(cors())
 
 app.get('/health-check', (req: Request, res: Response)=> {
     res.send("Working Properly")

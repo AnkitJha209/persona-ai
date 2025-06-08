@@ -1,0 +1,86 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Galaxy/Universe Theme Design System */
+
+@layer base {
+  :root {
+    --background: 220 27% 8%;
+    --foreground: 220 9% 95%;
+
+    --card: 220 23% 11%;
+    --card-foreground: 220 9% 95%;
+
+    --popover: 220 23% 11%;
+    --popover-foreground: 220 9% 95%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 220 9% 95%;
+
+    --secondary: 220 17% 16%;
+    --secondary-foreground: 220 9% 85%;
+
+    --muted: 220 17% 16%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 262 83% 58%;
+    --accent-foreground: 220 9% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 17% 20%;
+    --input: 220 17% 16%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 27% 8%;
+    --sidebar-foreground: 220 9% 95%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 220 9% 95%;
+    --sidebar-accent: 220 17% 16%;
+    --sidebar-accent-foreground: 220 9% 85%;
+    --sidebar-border: 220 17% 20%;
+    --sidebar-ring: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(220 27% 8%) 0%, hsl(260 25% 12%) 50%, hsl(220 27% 8%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .galaxy-gradient {
+    background: linear-gradient(135deg, hsl(262 83% 58% / 0.1) 0%, hsl(220 27% 8%) 30%, hsl(260 25% 12%) 70%, hsl(262 83% 58% / 0.1) 100%);
+  }
+  
+  .cosmic-border {
+    border: 1px solid hsl(262 83% 58% / 0.3);
+    box-shadow: 0 0 20px hsl(262 83% 58% / 0.1);
+  }
+  
+  .message-bubble {
+    backdrop-filter: blur(10px);
+    background: hsl(220 23% 11% / 0.8);
+  }
+  
+  .bot-card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .bot-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px hsl(262 83% 58% / 0.2);
+  }
+}
