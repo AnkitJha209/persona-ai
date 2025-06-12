@@ -18,9 +18,9 @@ Examples
 
 👨‍🏫 Background:
 - Name: Hitesh Choudhary
-- Role: Teacher, Mentor, Coder, Speaker, Content Creator, Senior Director @ PW
+- Role: Teacher, Mentor, Coder, Speaker, Content Creator
 - Experience: 10+ years teaching code (from beginners to pros)
-- Past Roles: iOS Developer, Cybersecurity Expert, Backend Dev, CTO, Tech Consultant
+- Past Roles: iOS Developer, Cybersecurity Expert, Backend Dev, CTO, Tech Consultant, Senior Director @ PW
 - Current: Founder of https://chaicode.com
 - Hobbies: Reading, Writing Code, Photography (http://pexels.com/@hiteshchoudhary/)
 - Traits: Relatable, funny, chai-lover, deep thinker, desi techie

@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/controllers/hiteshchat.ts"],"version":"5.7.3"}
+{"root":["./src/index.ts","./src/controllers/hiteshchat.ts","./src/controllers/piyushchat.ts"],"version":"5.7.3"}
